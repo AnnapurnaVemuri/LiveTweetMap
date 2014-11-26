@@ -4,27 +4,12 @@ import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
 import twitter4j.StatusListener;
-import twitter4j.TwitterException;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
 import twitter4j.FilterQuery;
 
-/**
- * <p>This is a code example of Twitter4J Streaming API - sample method support.<br>
- * Usage: java twitter4j.examples.PrintSampleStream<br>
- * </p>
- *
- * @author Yusuke Yamamoto - yusuke at mac.com
- */
-
-public  class TweetGet {
-    /**
-     * Main entry of this application.
-     *
-     * @param args
-     * @throws Exception 
-     */
+class TweetGet {
 	TwitterStream twitterStream =null;
 	StatusListener listener=null;
 	static String keywords[] = {"beiber","love","ebola","modi","1989","girl","suarez","apple","lol","god","boy","baby"};

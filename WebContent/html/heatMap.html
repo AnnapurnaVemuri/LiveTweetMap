@@ -57,7 +57,7 @@
    
    //http://cloudtweetmap.elasticbeanstalk.com/rest/hello-world/getGroupedTweets?round=0&count=200
    //http://cloudtweetmap.elasticbeanstalk.com/html/map.html  					
-      	    	  	$.getJSON("../rest/hello-world/getGroupedTweets?round=0&count=200",function(result){
+      	    	  	$.getJSON("rest/hello-world/getGroupedTweets?round=0&count=200",function(result){
       	    		var len = result.length;
       	    		var i, j, entry;
 
@@ -86,7 +86,7 @@
       clearMarkers();
         var arr = [];
       	var locationArr;
-        	  	$.getJSON("../rest/hello-world/getGroupedTweets?round=0&count=200",function(result){
+        	  	$.getJSON("rest/hello-world/getGroupedTweets?round=0&count=200",function(result){
         		var len = result.length;
         		var i, j, entry;
         		for (i = 0; i < result.length; ++i) {

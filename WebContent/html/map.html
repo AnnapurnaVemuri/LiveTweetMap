@@ -18,7 +18,6 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=">
     </script>
-    <script src= "/javascripts/GeoJSON.js"> </script>
     <script type="text/javascript">
 
     var infowindow=new google.maps.InfoWindow();
@@ -38,7 +37,7 @@
     		var bounds=new google.maps.LatLngBounds();
     		//http://localhost:8080/HelloWorldServlet/rest/hello-world/getAllTweets
     		//http://localhost:8080/hello-world/getTweetsByKeyword?hashTag="+value+"&round="+parseInt(map.getZoom()/2-2)+"&count=100
-    		        $.getJSON("../rest/hello-world/getTweetsByKeyword?hashTag="+value+"&round="+parseInt(map.getZoom()/2-2)+"&count=100",function(result){
+    		        $.getJSON("rest/hello-world/getTweetsByKeyword?hashTag="+value+"&round="+parseInt(map.getZoom()/2-2)+"&count=100",function(result){
     	    		var len = result.length;
     	    		var i, j, entry;
     	    		locationArr = new Array(len);
@@ -116,7 +115,7 @@
     	  var arr = [];
     		var locationArr;
     		var bounds=new google.maps.LatLngBounds();
-    	    	  	$.getJSON("../rest/hello-world/getGroupedTweets?round="+parseInt(map.getZoom()/2-2)+"&count=200",function(result){
+    	    	  	$.getJSON("rest/hello-world/getGroupedTweets?round="+parseInt(map.getZoom()/2-2)+"&count=200",function(result){
     	    		var len = result.length;
     	    		var i, j, entry;
     	    		// Create the array
@@ -162,7 +161,7 @@
         var arr = [];
       	var locationArr;
      
-        	  	$.getJSON("../rest/hello-world/getGroupedTweets?round=-1&count=200",function(result){
+        	  	$.getJSON("rest/hello-world/getGroupedTweets?round=-1&count=200",function(result){
         		var len = result.length;
         		var i, j, entry;
         		locationArr = new Array(len);
