@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta charset="UTF-8">
-<title>Example of Twitter Bootstrap 3 Static Navbar Extended</title>
+<title>LiveTweetsMap</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -57,7 +57,7 @@
    
    //http://cloudtweetmap.elasticbeanstalk.com/rest/hello-world/getGroupedTweets?round=0&count=200
    //http://cloudtweetmap.elasticbeanstalk.com/html/map.html  					
-      	    	  	$.getJSON("rest/hello-world/getGroupedTweets?round=0&count=200",function(result){
+      	    	  	$.getJSON("rest/live-tweets/getGroupedTweets?round=0&count=200",function(result){
       	    		var len = result.length;
       	    		var i, j, entry;
 
@@ -86,7 +86,7 @@
       clearMarkers();
         var arr = [];
       	var locationArr;
-        	  	$.getJSON("rest/hello-world/getGroupedTweets?round=0&count=200",function(result){
+        	  	$.getJSON("rest/live-tweets/getGroupedTweets?round=0&count=200",function(result){
         		var len = result.length;
         		var i, j, entry;
         		for (i = 0; i < result.length; ++i) {
@@ -143,8 +143,8 @@
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="./map.html">Plot Tweets</a></li>
-                <li><a href="./heatMap.html">Heat Map</a></li>
+                <li class="active"><a href="map.html">Plot Tweets</a></li>
+                <li><a href="heatMap.html">Heat Map</a></li>
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">Keywords <b class="caret"></b></a>
                     <ul role="menu" class="dropdown-menu">

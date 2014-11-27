@@ -3,6 +3,7 @@ package com.cloud.proj.tweets;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cloud.proj.commons.TweetConstants;
 import com.cloud.proj.commons.Tweets;
 import com.cloud.proj.db.utils.DataBaseHelper;
 import com.cloud.proj.message.queue.SQSSender;
@@ -24,11 +25,13 @@ public class TweetGet implements Runnable {
 	private List<Tweets> tweetsList;
 	private DataBaseHelper helper;
 	private SQSSender messageSender;
+	private final String[] keywords = {"beiber","love","ebola","modi","1989","girl","suarez","apple","lol","god","boy","baby"};
 	
 	public TweetGet(int batchSize) {
 		this.batchSize = batchSize;
 		this.helper = new DataBaseHelper();
 		tweetsList = new ArrayList<Tweets>(batchSize);
+		messageSender = new SQSSender(TweetConstants.QUEUE_NAME);
 	}
 	
 	@Override
@@ -120,6 +123,6 @@ public class TweetGet implements Runnable {
           System.out.println("Update failed, Retrying");
         }
         System.out.println("Update successful");
-        
+        messageSender.sendMessage(tweetsList.toString());
     }
 }

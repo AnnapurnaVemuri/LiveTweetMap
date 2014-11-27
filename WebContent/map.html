@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta charset="UTF-8">
-<title>Example of Twitter Bootstrap 3 Static Navbar Extended</title>
+<title>LiveTweetMap</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -35,9 +35,9 @@
     	  var arr = [];
     		var locationArr;
     		var bounds=new google.maps.LatLngBounds();
-    		//http://localhost:8080/HelloWorldServlet/rest/hello-world/getAllTweets
-    		//http://localhost:8080/hello-world/getTweetsByKeyword?hashTag="+value+"&round="+parseInt(map.getZoom()/2-2)+"&count=100
-    		        $.getJSON("rest/hello-world/getTweetsByKeyword?hashTag="+value+"&round="+parseInt(map.getZoom()/2-2)+"&count=100",function(result){
+    		//http://localhost:8080/HelloWorldServlet/rest/live-tweets/getAllTweets
+    		//http://localhost:8080/live-tweets/getTweetsByKeyword?hashTag="+value+"&round="+parseInt(map.getZoom()/2-2)+"&count=100
+    		        $.getJSON("rest/live-tweets/getTweetsByKeyword?hashTag="+value+"&round="+parseInt(map.getZoom()/2-2)+"&count=100",function(result){
     	    		var len = result.length;
     	    		var i, j, entry;
     	    		locationArr = new Array(len);
@@ -115,7 +115,7 @@
     	  var arr = [];
     		var locationArr;
     		var bounds=new google.maps.LatLngBounds();
-    	    	  	$.getJSON("rest/hello-world/getGroupedTweets?round="+parseInt(map.getZoom()/2-2)+"&count=200",function(result){
+    	    	  	$.getJSON("rest/live-tweets/getGroupedTweets?round="+parseInt(map.getZoom()/2-2)+"&count=200",function(result){
     	    		var len = result.length;
     	    		var i, j, entry;
     	    		// Create the array
@@ -161,7 +161,7 @@
         var arr = [];
       	var locationArr;
      
-        	  	$.getJSON("rest/hello-world/getGroupedTweets?round=-1&count=200",function(result){
+        	  	$.getJSON("rest/live-tweets/getGroupedTweets?round=-1&count=200",function(result){
         		var len = result.length;
         		var i, j, entry;
         		locationArr = new Array(len);
@@ -233,8 +233,8 @@
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="./map.html">Plot Tweets</a></li>
-                <li><a href="./html/heatMap.html">Heat Map</a></li>
+                <li class="active"><a href="map.html">Plot Tweets</a></li>
+                <li><a href="heatMap.html">Heat Map</a></li>
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" >Keywords <b class="caret"></b></a>
                     <ul role="menu" class="dropdown-menu">

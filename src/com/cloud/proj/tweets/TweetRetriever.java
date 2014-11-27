@@ -1,11 +1,16 @@
 package com.cloud.proj.tweets;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class TweetRetriever {
 	private static int batchSize;
 	private static int purgeBatchSize;
 	private static TweetGet getTweets;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnknownHostException {
+		String hostname = InetAddress.getLocalHost().getHostAddress();
+		System.out.println(hostname);
 		if (args.length > 0) {
 			batchSize = Integer.parseInt(args[0]);	
 		}

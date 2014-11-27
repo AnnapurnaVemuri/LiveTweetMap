@@ -4,18 +4,18 @@ xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/
 
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
 id="WebApp_ID" version="3.0">
-  <display-name>HelloWorldServlet</display-name>
+  <display-name>LiveTweetServlet</display-name>
   <welcome-file-list>
-    <welcome-file>/html/map.html</welcome-file>
+    <welcome-file>map.html</welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>Jersey REST Service</servlet-name>
     <servlet-class>
-  com.sun.jersey.spi.container.servlet.ServletContainer
-</servlet-class>
+  		com.sun.jersey.spi.container.servlet.ServletContainer
+	</servlet-class>
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
-      <param-value>com.srccodes.example</param-value>
+      <param-value>com.cloud.proj.servlet</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

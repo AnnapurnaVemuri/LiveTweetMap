@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cloud.proj.commons.Tweets;
-import com.example.helloworld.core.TwitCluster;
+import com.cloud.proj.servlet.TwitCluster;
 
 public class DataBaseHelper {
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
