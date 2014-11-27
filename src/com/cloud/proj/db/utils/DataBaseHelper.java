@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cloud.proj.commons.Tweets;
-import com.cloud.proj.servlet.TwitCluster;
 
 public class DataBaseHelper {
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
@@ -67,69 +66,62 @@ public class DataBaseHelper {
 	}
 	
 	public List<Tweets> getAllFeeds(int count) {
-		List<Tweets> tc=new ArrayList<Tweets>();
+		List<Tweets> tc = new ArrayList<Tweets>();
 		try {
-			if(connection==null)
-				connection=createConn();
-			stmt=connection.createStatement();
-
-		String sql = "SELECT * FROM TwitData limit " + count;
-		ResultSet rs = stmt.executeQuery(sql);
-	
-		while(rs.next()){	 
-			Tweets t=new Tweets( rs.getLong("userid"),  rs.getString("username"), rs.getString("status"),     rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("category"));
-			tc.add(t);
-	      }
-		return tc;
+			if (connection == null) {
+				connection = createConn();
+			}
+			stmt = connection.createStatement();
+			String sql = "SELECT * FROM TwitData limit " + count;
+			ResultSet rs = stmt.executeQuery(sql);
+		
+			while(rs.next()){	 
+				Tweets t = new Tweets( rs.getLong("userid"),  rs.getString("username"), rs.getString("status"), rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("category"));
+				tc.add(t);
+		    }
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return tc;
 		}
-	
+		return tc;
 	}
 		
-	public List<TwitCluster> getClusteredFeeds(int zoom, int count) {
-		List<TwitCluster> tc=new ArrayList<TwitCluster>();
+	public List<Tweets> getClusteredFeeds(int zoom, int count) {
+		List<Tweets> tc = new ArrayList<Tweets>();
 		try {
-			stmt=connection.createStatement();
-		String sql = "SELECT round(latitude,"+zoom+") as lat, round(longitude,"+zoom+") as longi, count(*) as count FROM TwitData group by round(latitude,"+zoom+"),round(longitude,"+zoom+") ";
-		ResultSet rs = stmt.executeQuery(sql);
-	
-		while(rs.next()){
-			TwitCluster t=new TwitCluster(rs.getDouble("lat"),rs.getDouble("longi"),rs.getInt("count"));
-			tc.add(t);
-
-	      }
-			stmt=connection.createStatement();
-			return tc;
+			if (connection == null) {
+				connection = createConn();
+			}
+			stmt = connection.createStatement();
+			String sql = "SELECT userid, username, status, round(latitude,"+zoom+") as lat, round(longitude,"+zoom+") as longi, category FROM TwitData";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				Tweets t = new Tweets(rs.getLong("userid"),  rs.getString("username"), rs.getString("status"), rs.getDouble("lat"),rs.getDouble("longi"), rs.getString("category"));
+				tc.add(t);
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			 return tc;
 		}
-	
+		return tc;
 	}
-	public List<TwitCluster> getClusteredFeedsByTag(String hashTag, int zoom, int count) {
-		List<TwitCluster> tc=new ArrayList<TwitCluster>();
+	
+	public List<Tweets> getClusteredFeedsByTag(String hashTag, int zoom, int count) {
+		List<Tweets> tc = new ArrayList<Tweets>();
 		try {
-			stmt=connection.createStatement();
-		String sql = "SELECT round(latitude,"+zoom+") as lat, round(longitude,"+zoom+") as longi, count(*) as count FROM TwitData where category='"+ hashTag +"'  group by round(latitude,"+zoom+"),round(longitude,"+zoom+") ";
-		ResultSet rs = stmt.executeQuery(sql);
+			if (connection == null) {
+				connection = createConn();
+			}
+			stmt = connection.createStatement();
+			String sql = "SELECT  userid, username, status, round(latitude,"+zoom+") as lat, round(longitude,"+zoom+") as longi FROM TwitData where category='"+ hashTag +"'";
+			ResultSet rs = stmt.executeQuery(sql);
 	
-		while(rs.next()){
-			TwitCluster t=new TwitCluster(rs.getDouble("lat"),rs.getDouble("longi"),rs.getInt("count"));
-			tc.add(t);
-
-	      }
-		stmt=connection.createStatement();
-		 return tc;
+			while(rs.next()){
+				Tweets t=new Tweets(rs.getLong("userid"),  rs.getString("username"), rs.getString("status"), rs.getDouble("lat"),rs.getDouble("longi"), hashTag);
+				tc.add(t);
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			 return tc;
 		}
-	
+		return tc;
 	}
 
 	public void closeConnection() {

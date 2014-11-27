@@ -1,7 +1,9 @@
 package com.cloud.proj.servlet;
 
+import com.cloud.proj.commons.Tweets;
 import com.cloud.proj.db.utils.DataBaseHelper;
  
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,22 +24,22 @@ public class LiveTweetResource {
     
     @GET
     @Path("/getGroupedTweets")
-    public  List<TwitCluster> getGroupedTweets(@QueryParam("round") Integer round,@QueryParam("count") Integer count) throws Exception  {
+    public  List<Tweets> getGroupedTweets(@QueryParam("round") Integer round,@QueryParam("count") Integer count) throws Exception  {
     	try{
     		  int roundInt=round.intValue();
     		  int countInt=count.intValue();
     		 return  db.getClusteredFeeds(roundInt,countInt);
-    	}catch(Exception e){
+    	} catch(Exception e){
     		return  db.getClusteredFeeds(4, 100);
     	}  
     }
     
     @GET
     @Path("/getTweetsByKeyword")
-    public  List<TwitCluster> getGroupedTweets(@QueryParam("hashTag") String hashTag, @QueryParam("round") Integer round,@QueryParam("count") Integer count) throws Exception  {
-    	try{
+    public  List<Tweets> getGroupedTweets(@QueryParam("hashTag") String hashTag, @QueryParam("round") Integer round,@QueryParam("count") Integer count) throws Exception  {
+    	try {
     		 return  db.getClusteredFeedsByTag(hashTag, round,count);
-    	}catch(Exception e){
+    	} catch(Exception e){
     		return  db.getClusteredFeedsByTag("Love",0, 100);
     	}     
     }
