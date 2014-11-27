@@ -1,5 +1,7 @@
 package com.cloud.proj.commons;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.JsonObject;
 
 public class Tweets {
 	long userid;
@@ -9,13 +11,13 @@ public class Tweets {
 	double longitude;
 	String category;
 	
-	public Tweets(long id,String uname,String status,double latitude,double longitude, String category){
+	public Tweets(long id, String uname, String status, double latitude, double longitude, String category){
 		this.userid=id;
 		this.username=uname;
 		this.status=status;
 		this.latitude=latitude;
 		this.longitude=longitude;
-		this.category=category;				
+		this.category=category;
 	}
 	
 	@JsonProperty
@@ -69,6 +71,16 @@ public class Tweets {
 
 	public void setCategory(String category) {
 		this.category = category;
-	}	
+	}
+
+	public JsonObject getJsonObject() {
+		JsonObject mainObj = new JsonObject();
+		mainObj.addProperty("status", status);
+		mainObj.addProperty("latitude", latitude);
+		mainObj.addProperty("longitude", longitude);
+		mainObj.addProperty("category", category);
+		return mainObj;
+	}
+
 }
 

@@ -7,7 +7,7 @@ import com.cloud.proj.commons.TweetConstants;
 import com.cloud.proj.commons.Tweets;
 import com.cloud.proj.db.utils.DataBaseHelper;
 import com.cloud.proj.message.queue.SQSSender;
-
+import com.google.gson.JsonArray;
 import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
@@ -123,6 +123,10 @@ public class TweetGet implements Runnable {
           System.out.println("Update failed, Retrying");
         }
         System.out.println("Update successful");
-        messageSender.sendMessage(tweetsList.toString());
+        JsonArray array = new JsonArray();
+        for (Tweets tweet: tweetsList) {
+        	array.add(tweet.getJsonObject());
+        }
+        messageSender.sendMessage(array.toString());
     }
 }
