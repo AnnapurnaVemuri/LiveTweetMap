@@ -1,9 +1,8 @@
 package com.srccodes.example;
 
-import com.example.helloworld.core.SampleConnect;
-import com.example.helloworld.core.Saying;
-import com.example.helloworld.core.TweetGet;
-import com.example.helloworld.core.Tweets;
+import com.cloud.proj.commons.Tweets;
+import com.cloud.proj.db.utils.DataBaseHelper;
+import com.cloud.proj.tweets.TweetGet;
 import com.example.helloworld.core.TwitCluster;
  
 import javax.ws.rs.GET;
@@ -13,17 +12,16 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
  
 @Path("/hello-world")
 @Produces( MediaType.APPLICATION_JSON )
 public class HelloWorldResource {
  
-    private final SampleConnect db;
+    private final DataBaseHelper db;
     private TweetGet insertTweetsToDB;
     public HelloWorldResource()   {
     
-        this.db=new  SampleConnect();
+        this.db=new  DataBaseHelper();
     }
 
 
@@ -75,7 +73,7 @@ public class HelloWorldResource {
     @GET
     @Path("/insertTweetsToDB")
     public  boolean insertTweetsToDB(@QueryParam("count") Integer count)  {
-    	try{
+    	/*try{
     		  int value=count.intValue();
     		  insertTweetsToDB=new TweetGet();
     		  insertTweetsToDB.insertTweetsToDB(count);
@@ -84,8 +82,8 @@ public class HelloWorldResource {
     		  insertTweetsToDB=new TweetGet();
     		  insertTweetsToDB.insertTweetsToDB(count);
     		 return true;
-    	}
-       
+    	}*/
+       return true;
     }
 
     @GET

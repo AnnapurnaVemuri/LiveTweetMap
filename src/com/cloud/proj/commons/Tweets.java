@@ -1,6 +1,4 @@
-package com.example.helloworld.core;
-import java.util.Date;
-
+package com.cloud.proj.commons;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Tweets {
@@ -10,23 +8,25 @@ public class Tweets {
 	double latitude;
 	double longitude;
 	String category;
+	
 	public Tweets(long id,String uname,String status,double latitude,double longitude, String category){
 		this.userid=id;
 		this.username=uname;
 		this.status=status;
 		this.latitude=latitude;
 		this.longitude=longitude;
-		this.category=category;
-					
+		this.category=category;				
 	}
 	
 	@JsonProperty
 	public long getUserId(){
 		return userid;
 	}
+	
 	public void getUserId(long id){
 		this.userid = id;
 	}
+	
     @JsonProperty
 	public String getUserName() {
 		return username;
@@ -35,6 +35,7 @@ public class Tweets {
 	public void setUserName(String uname) {
 		this.username = uname;
 	}
+	
     @JsonProperty
 	public String getStatus() {
 		return status;
@@ -43,6 +44,7 @@ public class Tweets {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
     @JsonProperty
 	public double getLatitude() {
 		return latitude;
@@ -51,6 +53,7 @@ public class Tweets {
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
+	
     @JsonProperty
 	public double getLongitude() {
 		return longitude;
@@ -66,7 +69,6 @@ public class Tweets {
 
 	public void setCategory(String category) {
 		this.category = category;
-	}
-	
+	}	
 }
 
