@@ -92,7 +92,7 @@ public class DataBaseHelper {
 				connection = createConn();
 			}
 			stmt = connection.createStatement();
-			String sql = "SELECT userid, username, status, round(latitude,"+zoom+") as lat, round(longitude,"+zoom+") as longi, category FROM TwitData";
+			String sql = "SELECT userid, username, status, round(latitude,"+zoom+") as lat, round(longitude,"+zoom+") as longi, category FROM TwitData limit " + count;
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				Tweets t = new Tweets(rs.getLong("userid"),  rs.getString("username"), rs.getString("status"), rs.getDouble("lat"),rs.getDouble("longi"), rs.getString("category"));
@@ -111,7 +111,7 @@ public class DataBaseHelper {
 				connection = createConn();
 			}
 			stmt = connection.createStatement();
-			String sql = "SELECT  userid, username, status, round(latitude,"+zoom+") as lat, round(longitude,"+zoom+") as longi FROM TwitData where category='"+ hashTag +"'";
+			String sql = "SELECT  userid, username, status, round(latitude,"+zoom+") as lat, round(longitude,"+zoom+") as longi FROM TwitData where category='"+ hashTag +"' limit " + count;
 			ResultSet rs = stmt.executeQuery(sql);
 	
 			while(rs.next()){

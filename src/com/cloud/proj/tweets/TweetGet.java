@@ -29,9 +29,9 @@ public class TweetGet implements Runnable {
 	
 	public TweetGet(int batchSize) {
 		this.batchSize = batchSize;
+		this.messageSender = new SQSSender(TweetConstants.QUEUE_NAME);
 		this.helper = new DataBaseHelper();
-		tweetsList = new ArrayList<Tweets>(batchSize);
-		messageSender = new SQSSender(TweetConstants.QUEUE_NAME);
+		this.tweetsList = new ArrayList<Tweets>(batchSize);
 	}
 	
 	@Override

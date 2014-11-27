@@ -2,7 +2,6 @@ package com.cloud.proj.servlet;
 
 import com.cloud.proj.commons.Tweets;
 import com.cloud.proj.db.utils.DataBaseHelper;
- 
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
